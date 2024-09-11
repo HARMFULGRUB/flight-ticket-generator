@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Ticket Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://kit.fontawesome.com/e601b708e0.js" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+    <script src="airlines.js" defer></script>
+    <script src="cities.js" defer></script>
+</head>
+<body class="corners">
+    <div id="form-container">
+        <h1>Ticket Printer</h1>
+        <div id="form-section">
+            <form id="ticketForm">
+                <label for="departure_date">Departure Date</label>
+                <input type="text" id="departure_date" name="departure_date" placeholder="DDMMMYY" required><br><br>
+
+                <label for="passenger_name">Passenger Names</label>
+                <input type="text" id="passenger_name" name="passenger_name" placeholder="Name1, Name2" required><br><br>
+
+                <label for="reservation_code">Reservation Code</label>
+                <input type="text" id="reservation_code" name="reservation_code" placeholder="XXXXX"><br><br>
+
+                <label for="airline_reservation_code">Airline Reservation Code</label>
+                <input type="text" id="airline_reservation_code" name="airline_reservation_code" placeholder="XXXXX1, XXXXX2" required><br><br>
+
+                <label for="departure_day_date">Departure Day and Date</label>
+                <input type="text" id="departure_day_date" name="departure_day_date" placeholder="DAY DD MMM YYYY" required><br><br>
+
+                <label for="airline">Airline Name</label>
+                <select id="airline" name="airline" required>
+                    <option value="" disabled selected>Select an Airline</option>
+                </select><br><br>
+
+                <label for="airline_code">Airline Code</label>
+                <input type="text" id="airline_code" name="airline_code" required><br><br>
+
+                <label for="flight_duration">Flight Duration</label>
+                <input type="text" id="flight_duration" name="flight_duration" placeholder="00h 00m" required><br><br>
+
+                <label for="baggage_allowance">Baggage Allowance</label>
+                <input type="text" id="baggage_allowance" name="baggage_allowance" placeholder="00kg" required><br><br>
+
+                <label for="aircraft_type">Aircraft Type</label>
+                <input type="text" id="aircraft_type" name="aircraft_type"><br><br>
+
+                <label for="eticket_number">eTicket Number (if available)</label>
+                <input type="text" id="eticket_number" name="eticket_number" placeholder="123, 456"><br><br>
+
+                <label for="departure_city">Departure City</label>
+                <select id="departure_city" name="departure_city" required>
+                    <option value="">Select Airport</option>
+                </select><br><br>
+
+                <label for="departure_city_full">Departure City and Country</label>
+                <input type="text" id="departure_city_full" name="departure_city_full" readonly><br><br>
+
+                <label for="arrival_city">Arrival City</label>
+                <select id="arrival_city" name="arrival_city" required>
+                    <option value="">Select Airport</option>
+                </select><br><br>
+
+                <label for="arrival_city_full">Arrival City and Country</label>
+                <input type="text" id="arrival_city_full" name="arrival_city_full" readonly><br><br>
+
+                <label for="departure_time">Departure Time</label>
+                <input type="text" id="departure_time" name="departure_time" required><br><br>
+
+                <label for="departure_date_short">Departure Date</label>
+                <input type="text" id="departure_date_short" name="departure_date_short" required><br><br>
+
+                <label for="arrival_time">Arrival Time</label>
+                <input type="text" id="arrival_time" name="arrival_time" required><br><br>
+
+                <label for="arrival_date_short">Arrival Date</label>
+                <input type="text" id="arrival_date_short" name="arrival_date_short" required><br><br>
+                
+                <label for="layover_time">Layover Time</label>
+                <input type="text" id="layover_time" name="layover_time" placeholder="00h 00m"><br><br>
+
+                <label for="connecting_departure_city">Connecting Departure City</label>
+                <select id="connecting_departure_city" name="connecting_departure_city">
+                    <option value="">Select Airport</option>
+                </select><br><br>
+
+                <label for="connecting_departure_city_full">Connecting Departure City Full</label>
+                <input type="text" id="connecting_departure_city_full" name="connecting_departure_city_full" readonly><br><br>
+
+                <label for="connecting_departure_time">Connecting Departure Time</label>
+                <input type="text" id="connecting_departure_time" name="connecting_departure_time"><br><br>
+
+                <label for="connecting_departure_date">Connecting Departure date</label>
+                <input type="text" id="connecting_departure_date" name="connecting_departure_date"><br><br>
+
+                <label for="connecting_arrival_city">Connecting Arrival City</label>
+                <select id="connecting_arrival_city" name="connecting_arrival_city">
+                    <option value="">Select Airport</option>
+                </select><br><br>
+
+                <label for="connecting_arrival_city_full">Connecting Arrival City Full</label>
+                <input type="text" id="connecting_arrival_city_full" name="connecting_arrival_city_full" readonly><br><br>
+
+                <label for="connecting_arrival_time">Connecting Arrival Time</label>
+                <input type="text" id="connecting_arrival_time" name="connecting_arrival_time"><br><br>
+
+                <label for="connecting_arrival_date">Connecting Arrival Date</label>
+                <input type="text" id="connecting_arrival_date" name="connecting_arrival_date"><br><br>
+
+                <div id="buttons-container">
+                    <button type="submit" id="submit-btn">Print</button>
+                    <button type="button" id="clear-btn"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

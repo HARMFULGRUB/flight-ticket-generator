@@ -1,0 +1,175 @@
+document.getElementById('ticketForm').addEventListener('submit', function(e) {
+    e.preventDefault(); 
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Form Values
+    const departureDate = document.getElementById('departure_date').value;
+    const passengerName = document.getElementById('passenger_name').value.split(',').join(', ');
+    const reservationCode = document.getElementById('reservation_code').value;
+    const airlineReservationCode = document.getElementById('airline_reservation_code').value;
+    const departureDayDate = document.getElementById('departure_day_date').value;
+    const airline = document.getElementById('airline').value;
+    const airlineCode = document.getElementById('airline_code').value;
+    const flightDuration = document.getElementById('flight_duration').value;
+    const baggageAllowance = document.getElementById('baggage_allowance').value;
+    const aircraftType = document.getElementById('aircraft_type').value;
+    const eticketNumber = document.getElementById('eticket_number').value;
+    const departureCity = document.getElementById('departure_city').value;
+    const departureCityFull = document.getElementById('departure_city_full').value;
+    const arrivalCity = document.getElementById('arrival_city').value;
+    const arrivalCityFull = document.getElementById('arrival_city_full').value;
+    const departureTime = document.getElementById('departure_time').value;
+    const departureDateShort = document.getElementById('departure_date_short').value;
+    const arrivalTime = document.getElementById('arrival_time').value;
+    const arrivalDateShort = document.getElementById('arrival_date_short').value;
+
+    // Title
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(24);
+    doc.text('DEPARTURE', 20, 20);
+    doc.text(departureDayDate, 75, 20);
+    doc.setLineWidth(0.6);
+    doc.line(20, 22, 190, 22); 
+
+    // Passenger Information
+    doc.setFontSize(20);
+    doc.text('Passenger Information', 20, 32);
+
+    // Passenger Name
+    doc.setFontSize(16);
+    doc.text('Passenger Name(s)', 20, 40);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(14);
+    doc.text(passengerName, 20, 46);
+
+    // Reservation Code
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(16); 
+    doc.text('Reservation Code', 20, 54);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(14);
+    doc.text(reservationCode || '-', 20, 60);
+
+    // Airline Reservation Code
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(16);  
+    doc.text('Airline Reservation Code(s)', 20, 68);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(14);
+    doc.text(airlineReservationCode, 20, 74);  
+
+    // Airline Information
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(16);
+    doc.text('Airline Information', 20, 84);
+    doc.line(20, 86, 190, 86);
+
+    doc.setFontSize(14);
+    doc.text('Airline', 20, 94);
+    doc.setFont("helvetica", "normal");
+    
+    doc.setFontSize(12);
+    doc.text(`${airline}`, 20, 100);
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text('Airline Code', 20, 108);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(`${airlineCode}`, 20, 114);
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text('Flight Duration', 20, 122);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(`${flightDuration}`, 20, 128);
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text('Baggage Allowance', 20, 136);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(`1x${baggageAllowance} Check-In Baggage`, 20, 142);
+    doc.text(`1x7kg Cabin Baggage`, 20, 148);
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text('Aircraft', 20, 156);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(`${aircraftType}`, 20, 162);
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text('eTicket Number', 20, 170);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(`${eticketNumber || '-'}`, 20, 176);
+
+    // Departure and Arrival Information
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(16);
+    doc.text('Departure & Arrival Information', 20, 186);
+    doc.line(20, 188, 190, 188); 
+
+    // Departure Information
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text('Departure City:', 20, 198);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(departureCity, 20, 204);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(departureCityFull, 20, 210)
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text('Departure Time:', 20, 218);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(departureTime, 20, 224);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(departureDateShort, 20, 230)
+
+    // Arrival Information
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text('Arrival City:', 120, 198);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(arrivalCity, 120, 204);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(arrivalCityFull, 120, 210)
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text('Arrival Time:', 120, 218);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(arrivalTime, 120, 224);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(arrivalDateShort, 120, 230)
+
+    // Save
+    doc.save(`${departureDate} Itinerary.pdf`);
+});
